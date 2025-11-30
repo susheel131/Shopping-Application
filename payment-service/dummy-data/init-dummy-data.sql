@@ -1,11 +1,16 @@
 -- Payment Service Dummy Data
 -- Users: 5 test users
-INSERT INTO users (id, name, email) VALUES
-(1, 'John Doe', 'john@example.com'),
-(2, 'Jane Smith', 'jane@example.com'),
-(3, 'Robert Wilson', 'robert@example.com'),
-(4, 'Emily Brown', 'emily@example.com'),
-(5, 'Michael Johnson', 'michael@example.com');
+INSERT INTO payment_service_db.user (id, email, name) VALUES
+(1, 'john@example.com', 'John Doe'),
+(2, 'jane@example.com', 'Jane Smith'),
+(3, 'robert@example.com', 'Robert Wilson'),
+(4, 'emily@example.com', 'Emily Brown'),
+(5, 'michael@example.com', 'Michael Johnson'),
+(6, 'susan@example.com', 'Susan Miller'),
+(7, 'david@example.com', 'David Anderson'),
+(8, 'laura@example.com', 'Laura Martinez'),
+(9, 'kevin@example.com', 'Kevin Thompson'),
+(10, 'olivia@example.com', 'Olivia Taylor');
 
 -- Payment Methods: 6 payment methods for users
 INSERT INTO payment_methods (id, user_id, type, card_last_4, cardholder_name, is_default) VALUES
@@ -17,20 +22,14 @@ INSERT INTO payment_methods (id, user_id, type, card_last_4, cardholder_name, is
 (6, 5, 'CREDIT_CARD', '2468', 'Michael Johnson', true);
 
 -- Payments: Various payment statuses
-INSERT INTO payments (id, user_id, method_id, order_id, amount, currency, status, transaction_id) VALUES
-('PAY-001', 1, 1, 101, 999.99, 'USD', 'COMPLETED', 'TXN-12345'),
-('PAY-002', 2, 3, 102, 1499.50, 'USD', 'COMPLETED', 'TXN-12346'),
-('PAY-003', 3, 4, 103, 599.00, 'USD', 'COMPLETED', 'TXN-12347'),
-('PAY-004', 4, 5, 104, 2499.99, 'USD', 'COMPLETED', 'TXN-12348'),
-('PAY-005', 5, 6, 105, 349.99, 'USD', 'COMPLETED', 'TXN-12349'),
-('PAY-006', 1, 2, 106, 799.00, 'USD', 'COMPLETED', 'TXN-12350'),
-('PAY-007', 2, 3, 107, 599.99, 'USD', 'COMPLETED', 'TXN-12351'),
-('PAY-008', 3, 4, 108, 1299.50, 'USD', 'COMPLETED', 'TXN-12352'),
-('PAY-PEND-001', 4, 5, 109, 449.00, 'USD', 'PENDING', 'TXN-PENDING-001'),
-('PAY-FAIL-001', 5, 6, 110, 199.99, 'USD', 'FAILED', 'TXN-FAILED-001');
-
--- Refunds: Some refund records
-INSERT INTO refunds (id, payment_id, amount, reason, status) VALUES
-('REF-001', 'PAY-001', 999.99, 'ORDER_CANCELLED', 'COMPLETED'),
-('REF-002', 'PAY-002', 1499.50, 'PRODUCT_DEFECTIVE', 'INITIATED'),
-('REF-003', 'PAY-003', 599.00, 'WRONG_ITEM_RECEIVED', 'COMPLETED');
+INSERT INTO payment_service_db.payment_method (details, type, user_id) VALUES
+('Visa **** 1234', 'CARD', 1),
+('Mastercard **** 9876', 'CARD', 2),
+('Paytm Wallet', 'WALLET', 3),
+('Google Pay - UPI ID: john@upi', 'ALTERNATIVE', 4),
+('PhonePe Wallet', 'WALLET', 5),
+('BNPL - Simpl Pay', 'BNPL', 6),
+('RazorPay UPI - laura@bank', 'ALTERNATIVE', 7),
+('Amazon Pay Wallet', 'WALLET', 8),
+('Visa **** 4455', 'CARD', 9),
+('BNPL - LazyPay', 'BNPL', 10);
