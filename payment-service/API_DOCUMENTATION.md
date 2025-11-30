@@ -4,7 +4,7 @@
 The Payment Service API provides comprehensive endpoints for managing payments, payment methods, and payment history in the Shopping Application.
 
 ## Base URL
-http://localhost:8080/api/v1
+http://localhost:8084/api/v1
 
 ## API Endpoints Summary
 
