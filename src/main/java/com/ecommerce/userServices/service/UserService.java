@@ -16,7 +16,9 @@ import com.ecommerce.userServices.repository.AddressRepository;
 import com.ecommerce.userServices.repository.UserRepository;
 import com.ecommerce.userServices.security.JwtUtil;
 
+import java.lang.StackWalker.Option;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,11 +38,13 @@ public class UserService {
         
         User user = new User();
         user.setEmail(request.getEmail());
+        user.setUsername(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setPhone(request.getPhone());
         user.setRole(Role.CUSTOMER);
+
         
         user = userRepository.save(user);
         
@@ -135,4 +139,10 @@ public class UserService {
         dto.setIsDefault(address.getIsDefault());
         return dto;
     }
+
+	public Long getUserIdByEmail(String email) {
+		
+		return userRepository.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found")).getId();
+	}
 }

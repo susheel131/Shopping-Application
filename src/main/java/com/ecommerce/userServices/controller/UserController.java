@@ -18,8 +18,7 @@ public class UserController {
     
     @GetMapping("/profile")
     public ResponseEntity<UserProfileDTO> getProfile(@RequestHeader("X-User-Id") String email) {
-        // In real implementation, extract userId from JWT
-        Long userId = 1L; // Placeholder
+        Long userId = userService.getUserIdByEmail(email);
         return ResponseEntity.ok(userService.getProfile(userId));
     }
     
@@ -27,7 +26,7 @@ public class UserController {
     public ResponseEntity<UserProfileDTO> updateProfile(
             @RequestHeader("X-User-Id") String email,
             @RequestBody UserProfileDTO dto) {
-        Long userId = 1L; // Extract from JWT
+    	Long userId = userService.getUserIdByEmail(email);
         return ResponseEntity.ok(userService.updateProfile(userId, dto));
     }
     
@@ -35,13 +34,13 @@ public class UserController {
     public ResponseEntity<AddressDTO> addAddress(
             @RequestHeader("X-User-Id") String email,
             @RequestBody AddressDTO dto) {
-        Long userId = 1L; // Extract from JWT
+    	Long userId = userService.getUserIdByEmail(email);
         return ResponseEntity.ok(userService.addAddress(userId, dto));
     }
     
     @GetMapping("/addresses")
     public ResponseEntity<List<AddressDTO>> getAddresses(@RequestHeader("X-User-Id") String email) {
-        Long userId = 1L; // Extract from JWT
+    	Long userId = userService.getUserIdByEmail(email);
         return ResponseEntity.ok(userService.getAddresses(userId));
     }
 }

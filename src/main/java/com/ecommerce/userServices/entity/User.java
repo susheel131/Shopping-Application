@@ -50,4 +50,7 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+    
+    @Column(nullable = false, unique = true)
+    private String username;
 }
